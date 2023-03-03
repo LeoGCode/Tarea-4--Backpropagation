@@ -1,0 +1,18 @@
+{
+  "cSpell.words": [
+    "backpropagation",
+    "Backpropagation",
+    "matplotlib",
+    "multicapa",
+    "ndarray",
+    "perceptron",
+    "Perceptron",
+    "pyplot",
+    "relu",
+    "retropropagación",
+    "softmax"
+  ],
+  "cSpell.language": "en,es-ES",
+  "editor.defaultFormatter": "ms-python.vscode-pylance",
+  "editor.formatOnSave": true,
+}
