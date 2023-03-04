@@ -1,15 +1,20 @@
 {
   "cSpell.words": [
+    "Adaline",
+    "adeline",
     "backpropagation",
     "Backpropagation",
+    "ésimo",
     "matplotlib",
     "multicapa",
     "ndarray",
+    "overfitting",
     "perceptron",
     "Perceptron",
     "pyplot",
     "relu",
     "retropropagación",
+    "sobreajustando",
     "softmax"
   ],
   "cSpell.language": "en,es-ES",
