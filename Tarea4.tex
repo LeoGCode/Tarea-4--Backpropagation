@@ -100,7 +100,7 @@ Veamos primeramente las gráficas del error cuadrático medio para los conjuntos
 \end{figure}
 
 \newpage
-Se puede  apreciar que el error cuadrático medio para los conjuntos de entrenamiento y para los conjuntos de validación va disminuyendo a medida que se va realizando el entrenamiento. Esto es un indicador de que el algoritmo está convergiendo. De igual forma se puede ver que las curvas de error cuadrático medio para el conjunto de entrenamiento y para el conjunto de validación se encuentran muy cercanas, lo que indica que el algoritmo no está sobreajustando (overfitting) los datos.
+Se puede  apreciar que el error cuadrático medio para los conjuntos de entrenamiento y para los conjuntos de validación va disminuyendo a medida que se va realizando el entrenamiento. Esto es un indicador de que el algoritmo está convergiendo. De igual forma se puede ver que las curvas de error cuadrático medio para el conjunto de entrenamiento y para el conjunto de validación se encuentran muy cercanas, lo que indica que el algoritmo no está sobreajustando (overfitting) los datos. Sin embargo en la segunda gráfica se puede apreciar que el error cuadrático medio para el conjunto de validación empieza a aumentar ligeramente a partir de una iteración entre la 200 y la 400. Esto es un indicador de que el algoritmo está sobreajustando los datos.
 
 Veamos la siguiente tabla para comparar los resultados obtenidos para el MLP contra el Adeline
 
@@ -110,20 +110,25 @@ Veamos la siguiente tabla para comparar los resultados obtenidos para el MLP con
     \cline{2-3}
                          & \multicolumn{2}{l}{Error cuadratico medio}               \\ \cline{2-3}
                          & MLP                                        & Adeline     \\ \hline
-    EarthSpace vs MedSci & $2.51x10^{-5}$                             & $117.6796$  \\ \hline
-    LifeScy vs Agri      & $9.21x10^{-7}$                             & $1292.4977$ \\ \hline
+    EarthSpace vs MedSci & $0.4711$                                   & $117.6796$  \\ \hline
+    LifeScy vs Agri      & $0.2931$                                   & $1292.4977$ \\ \hline
+  \end{tabular}
+\end{table}
+
+Por otra parte en este modelo se midio la taza de aciertos para los conjuntos de entrenamiento y de validación. Para esto se utilizo la siguiente tabla:
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{lll}
+    \cline{2-3}
+                         & \multicolumn{2}{l}{Taza de aciertos del MLP}            \\ \cline{2-3}
+                         & Entrenamiento                                & Prueba   \\ \hline
+    EarthSpace vs MedSci & $0.8226$                                     & $0.3958$ \\ \hline
+    LifeScy vs Agri      & $0.6264$                                     & $0.4585$ \\ \hline
   \end{tabular}
 \end{table}
 
 Se puede apreciar por medio de la tabla que el MLP obtuvo mejores resultados que el Adeline. Obteniendo un error mas pequeño para los conjuntos de entrenamiento y de validación. Sin embargo cabe destacar que los datos de entrenamiento para el MLP se le aplico una transformación en contraposición al adeline que se le pasaron las datos sin ningún tipo de tratamiento
-
-El tratamiento realizado fue el de la normalización, en el cual se le aplico la siguiente formula a cada dato de entrada:
-
-\begin{equation*}
-  x_{norm} = \frac{x - \mu}{\sigma}
-\end{equation*}
-
-Donde $\mu$ es la media de los datos y $\sigma$ es la desviación estándar de los datos. Esto se realizo para que los datos de entrada tenga una distribución normal y asi poder obtener mejores resultados. La Inicialización de los pesos se realizo tomando valores aleatorias de la distribución normal con media 0 y desviación estándar 1.
 
 Para el MLP se escogió una taza de aprendizaje de 0.001 ya que en diferentes experimentos y tomando como referencia los pesos utilizados en el Adeline se escogió esa taza como la que mejor resultados daba. Para la arquitectura de la red se escogió una capa oculta de 3 neuronas y una capa de salida de 2 neuronas. Esto se escogió ya que en diferentes experimentos se observo que con esa arquitectura se obtuvieron mejores resultados que con otras arquitecturas.
 
@@ -153,9 +158,9 @@ donde $y_i$ es la salida de la máquina para la entrada $x_i$, y $d_i$ es la sal
 Podemos encontrar los valores de $w_k$ que minimizan $E(w)$ tomando la derivada de $E(w)$ con respecto a cada peso $w_k$ y estableciéndolos en cero:
 
 \begin{align*}
-  \frac{\partial E}{\partial w_k} & = \sum_{i=1}^{N}(y_i - d_i)\frac{\partial}{\partial w_k}\left(\sum_{j=1}^{K}w_jF_j(x_i)\right) \
-                                  & = \sum_{i=1}^{N}(y_i - d_i)F_k(x_i) \
-                                  & = \sum_{i=1}^{N}(w_1F_1(x_i) + w_2F_2(x_i) + ... + w_kF_k(x_i) + ... + w_KF_K(x_i) - d_i)F_k(x_i) \
+  \frac{\partial E}{\partial w_k} & = \sum_{i=1}^{N}(y_i - d_i)\frac{\partial}{\partial w_k}\left(\sum_{j=1}^{K}w_jF_j(x_i)\right)    \\
+                                  & = \sum_{i=1}^{N}(y_i - d_i)F_k(x_i)                                                               \\
+                                  & = \sum_{i=1}^{N}(w_1F_1(x_i) + w_2F_2(x_i) + ... + w_kF_k(x_i) + ... + w_KF_K(x_i) - d_i)F_k(x_i) \\
                                   & = \sum_{i=1}^{N}(y_i - d_i)F_k(x_i)
 \end{align*}
 
